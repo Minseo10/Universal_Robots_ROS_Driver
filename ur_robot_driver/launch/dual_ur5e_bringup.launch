@@ -34,18 +34,14 @@
   <arg name="tool_device_name" default="/tmp/ttyUR" doc="Local device name used for tool communication. Only used, when `use_tool_communication` is set to true."/>
   <arg name="tool_tcp_port" default="54321" doc="Port on which the robot controller publishes the tool comm interface. Only used, when `use_tool_communication` is set to true."/>
   <arg name="headless_mode" default="true" doc="Automatically send URScript to robot to execute. On e-Series this does require the robot to be in 'remote-control' mode. With this, the URCap is not needed on the robot."/>
-
-<arg name="robot_description_file" default="$(find ur_description)/launch/load_dual_arm.launch" doc="Robot description launch file."/>
-
-
+  <arg name="robot_description_file" default="$(find ur_description)/launch/load_dual_arm.launch" doc="Robot description launch file."/>
 
   <group ns="left_arm">
-    <!--<include file="$(find ur_robot_driver)/launch/ur_common.launch" pass_all_args="true" />-->
     <include file="$(find ur_robot_driver)/launch/ur_common.launch">
       <arg name="debug" value="$(arg debug)"/>
       <arg name="use_tool_communication" value="$(arg use_tool_communication)"/>
       <arg name="controller_config_file" value="$(arg left_controller_config_file)"/>
-      \<arg name="robot_description_file" value="$(arg robot_description_file)"/>
+      <arg name="robot_description_file" value="$(arg robot_description_file)"/>
       <arg name="kinematics_config" value="$(arg left_kinematics_config)"/>
       <arg name="robot_ip" value="$(arg left_robot_ip)"/>
       <arg name="reverse_port" value="$(arg left_reverse_port)"/>
@@ -71,7 +67,6 @@
 
 
     <group ns="right_arm">
-    <!--<include file="$(find ur_robot_driver)/launch/ur_common.launch" pass_all_args="true" />-->
     <include file="$(find ur_robot_driver)/launch/ur_common.launch">
       <arg name="debug" value="$(arg debug)"/>
       <arg name="use_tool_communication" value="$(arg use_tool_communication)"/>
@@ -99,11 +94,3 @@
     <node name="joint_state_relay" type="relay" pkg="topic_tools" args="joint_states /joint_states" />
    </group>
 </launch>
-
-<!--
-<?xml version="1.0"?>
-<launch>
-  <include file="$(find ur_robot_driver)/launch/left_ur5e_bringup.launch" ns="left_arm" />
-  <include file="$(find ur_robot_driver)/launch/right_ur5e_bringup.launch" ns="right_arm" />
-</launch>
--->
