@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find ur_robot_driver)/launch/left_ur5e_bringup.launch" ns="left_arm"/>
+  <include file="$(find ur_robot_driver)/launch/right_ur5e_bringup.launch" ns="right_arm"/>
+</launch>
